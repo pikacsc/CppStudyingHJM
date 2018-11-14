@@ -82,10 +82,39 @@ namespace MyContainer
 		{
 			m_length = newSize;
 		}
-
+		//10 , 3
+		/*
+		0 1 2 3 4
+		1,3,5,7,9
+		before 7
+		0 1 2 3  4 5
+		1,3,5,10,7,9
+		*/
+		
 		void InsertBefore(const int& value, const int &ix)
 		{
-
+			unsigned int index = (ix < 0) ? (static_cast<unsigned int>(m_length) - ix) : static_cast<unsigned int>(ix);
+			
+			unsigned int newSize = m_length + 1;
+			int *temp = new int[newSize];
+			for (unsigned int i = 0; i <= m_length; ++i)
+			{
+				if (i == index) 
+				{
+					temp[index] = value;
+					continue;
+				}
+				if (i > index)
+				{
+					temp[i] = m_data[i-1];
+					continue;
+				}
+				else
+					temp[i] = m_data[i];
+			}
+			reset(); //delete m_data
+			resize(newSize);
+			m_data = temp;
 		}
 
 		void remove(const int& ix)
