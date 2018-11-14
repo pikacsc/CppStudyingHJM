@@ -85,8 +85,8 @@ namespace MyContainer
 	
 		void InsertBefore(const int& value, const int &ix)
 		{
-			unsigned int index = (ix < 0) ? (static_cast<unsigned int>(m_length) - ix) : static_cast<unsigned int>(ix);
-			
+			unsigned int index = (ix < 0) ? (m_length - static_cast<unsigned int>(ix)) : static_cast<unsigned int>(ix);
+
 			unsigned int newSize = m_length + 1;
 			int *temp = new int[newSize];
 			for (unsigned int i = 0; i <= m_length; ++i)
@@ -111,8 +111,7 @@ namespace MyContainer
 
 		void remove(const int& ix)
 		{
-			unsigned int index = (ix < 0) ? (static_cast<unsigned int>(m_length) - ix) : static_cast<unsigned int>(ix); 
-
+			unsigned int index = (ix < 0) ? (m_length -static_cast<unsigned int>(ix)) : static_cast<unsigned int>(ix);
 			unsigned int newSize = m_length - 1;
 			int *temp = new int[newSize];
 			for (unsigned int i = 0; i <= m_length; ++i)
