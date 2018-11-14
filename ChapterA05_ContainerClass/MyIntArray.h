@@ -69,16 +69,18 @@ namespace MyContainer
 
 		void Init()
 		{
-
+			m_data = new int[m_length];
 		}
 
 		void reset()
 		{
-			
+			delete[] m_data;
+			m_data = nullptr;
 		}
 
-		void resize()
+		void resize(const unsigned int& newSize)
 		{
+			m_length = newSize;
 		}
 
 		void InsertBefore(const int& value, const int &ix)
@@ -93,7 +95,20 @@ namespace MyContainer
 
 		void push_back(const int& value)
 		{
-
+			unsigned int newSize = m_length+1;
+			int *temp = new int[newSize];
+			for (unsigned int i = 0; i <= m_length; ++i)
+			{
+				if (i == (m_length))
+				{
+					temp[m_length] = value;
+					reset(); //delete m_data
+					resize(newSize);
+					m_data = temp;
+					break;
+				}
+				temp[i] = m_data[i];
+			}
 		}
 	};
 
