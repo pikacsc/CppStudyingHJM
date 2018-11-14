@@ -19,7 +19,7 @@ namespace MyContainer
 			m_data = new int[length];
 		}
 
-		MyIntArray(const initializer_list<int> &list) // use initializer_list, for doing this  "MyIntArray my_arr{1,3,5,7,9};"
+		MyIntArray(const initializer_list<int> &list) // use initializer_list, for exam1) MyIntArray my_arr{1,3,5,7,9}; 
 			:MyIntArray(list.size())
 		{
 			int count = 0;
@@ -34,6 +34,28 @@ namespace MyContainer
 		{
 			delete[] this->m_data;
 			m_data = nullptr;
+		}
+
+	
+		
+		MyIntArray& operator = (const MyIntArray & source)
+		{
+			if (this == &source)
+				return *this;
+			delete m_data;
+
+			m_length = source.m_length;
+
+			if (source.m_data != nullptr)
+			{
+				m_data = new int[m_length];
+				for (unsigned int i = 0; i < m_length; ++i)
+					m_data[i] = source.m_data[i];
+			}
+			else
+				m_data = nullptr;
+			return *this;
+
 		}
 
 		friend ostream & operator << (ostream & out, MyIntArray & arr)
@@ -52,6 +74,7 @@ namespace MyContainer
 
 		void reset()
 		{
+			
 		}
 
 		void resize()
