@@ -1,10 +1,7 @@
 /*
 HongJeongMo C++
 
-Chapter C_6 Virtual Function Table
-
-
-Dynamic Binding with virtual function table
+Chapter C_6 Dynamic Binding with virtual function table
 
 if function is a virtual and
 if overrided function exist then 
