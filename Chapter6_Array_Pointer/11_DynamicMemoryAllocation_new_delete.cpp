@@ -24,6 +24,13 @@ Both 'new' and 'delete', should work with OS, so it's a bit slow process
 
 #include <iostream>
 
+
+//To check memory leak
+#define _CRTDBG_MAP_ALLOC 
+#include <stdlib.h> 
+#include <crtdbg.h> 
+
+
 using namespace std;
 
 int main_DynamicMemoryAllocation()
@@ -132,6 +139,17 @@ int main_DynamicMemoryAllocation()
 		delete ptr6;
 	}
 	
+	//Tip, memory leak checking by using CRT lib
+	
+	_CrtDumpMemoryLeaks();
+	/*
+	from begin to _CrtDumpMemoryLeaks(); line , if any memory leak found then
+	"Detected Memory leak" showed up at log, however
+	All Instances should be destructed manually cause they wouldn't desturct until main() :: return 0;
+	so _CrtDumpMemoryLeaks(); will detect that memory leak.
+	*/
+
+
 
 	return 0;
 }
